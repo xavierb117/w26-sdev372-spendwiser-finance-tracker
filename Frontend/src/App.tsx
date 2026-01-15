@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect} from "react";
-
+import DashboardForm from './components/DashboardForm';
 
 
 function App() {
@@ -16,7 +16,8 @@ function App() {
   }, []);
   return (
     <>
-      
+      <h1>SpendWiser</h1>
+      <DashboardForm />
     </>
   )
 }
