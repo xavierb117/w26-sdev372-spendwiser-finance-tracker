@@ -57,34 +57,27 @@ export default function DashboardForm(){
     fetchExpenses();
   }, []);
 
+    {/*Top dashboard*/}
     return(
-    <div>
+    <div className="dashboard">
 
-        <div>
-            <label>Category</label>
-            <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                >
+        <div className="top-row">
+            <div className="field">
+                <label>Category</label>
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
                 <option value="">Select</option>
                 {Categories.map((cat) =>(
-                    <option key={cat.id} value={cat.id}>
-                    {cat.label}
-                    </option>
+                    <option key={cat.id} value={cat.id}>{cat.label}</option>
                 ))}  
             </select>
          </div> 
 
-        <div>
+        <div className="field">
             <label>$ Spent</label>
-            <input
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-            />
+            <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
         </div>
 
-        <div>
+        <div className="field">
             <label>Location</label>
             <input
                 value={location}
@@ -92,7 +85,7 @@ export default function DashboardForm(){
             />
         </div>
 
-        <div>
+        <div className="field">
             <label>Date</label>
             <input
                 type="date"
@@ -100,30 +93,48 @@ export default function DashboardForm(){
                 onChange={(e) => setDate(e.target.value)}
             />
         </div>
-
-    <div>
-        <label>Description</label>
-        <textarea
-         value={description}
-         onChange={(e) => setDescription(e.target.value)}
-        rows={6}
-        cols={30}
-        />
     </div>
 
-    <button onClick={submitExpense}>Add Expense</button>
-
-    <hr/>
-
-    <div>
+    {/*Main content*/}
+    <div className="main-row">
+        
+        {/*Left side content history*/}
+    <div className="history">
+        <h3>Finance History</h3>
         {expenses.map((e) => (
-          <div key={e.id}>
-            <strong>{e.hobby}</strong> — ${e.amount}  
-            <div>{e.description}</div>
+          <div key={e.id} className="history-item">
+            <div>{e.hobby}</div>
+            <div>${e.amount}</div>
             <small>{e.expense_date}</small>
           </div>
         ))}
-    </div>            
     </div>
+
+      {/* Center content */}
+      <div className="center">
+        <div className="image-drop">Drop Product Image or Receipt here</div>
+
+        <textarea
+          placeholder="What's the item for today?"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+
+    <button onClick={submitExpense}>Add Expense</button>
+
+    <div/>
+
+     {/* Right chart */}
+      <div className="chart">
+        <h3>Finance goals chart</h3>
+        <div className="chart-placeholder"></div>
+      </div>
+
+    </div>
+
+    <footer className="footer">Footer</footer>
+
+    </div>
+  </div>
     )
 }
