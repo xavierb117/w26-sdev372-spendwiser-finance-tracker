@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../App.css";
 
 const Categories = [
     { id: "surplus", label: "Surplus"},
@@ -57,84 +58,87 @@ export default function DashboardForm(){
     fetchExpenses();
   }, []);
 
-    {/*Top dashboard*/}
-    return(
-    <div className="dashboard">
-
-        <div className="top-row">
-            <div className="field">
-                <label>Category</label>
-            <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                <option value="">Select</option>
-                {Categories.map((cat) =>(
-                    <option key={cat.id} value={cat.id}>{cat.label}</option>
-                ))}  
-            </select>
-         </div> 
-
+return (
+    <div className="dashboard-wrapper">
+      {/* TOP ROW */}
+      <div className="top-row">
         <div className="field">
-            <label>$ Spent</label>
-            <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
+          <label>Category</label>
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="">Select</option>
+            {Categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="field">
-            <label>Location</label>
-            <input
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-            />
+          <label>$ Spent</label>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
         </div>
 
         <div className="field">
-            <label>Date</label>
-            <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-            />
+          <label>Location</label>
+          <input
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
         </div>
-    </div>
 
-    {/*Main content*/}
-    <div className="main-row">
-        
-        {/*Left side content history*/}
-    <div className="history">
-        <h3>Finance History</h3>
-        {expenses.map((e) => (
-          <div key={e.id} className="history-item">
-            <div>{e.hobby}</div>
-            <div>${e.amount}</div>
-            <small>{e.expense_date}</small>
-          </div>
-        ))}
-    </div>
-
-      {/* Center content */}
-      <div className="center">
-        <div className="image-drop">Drop Product Image or Receipt here</div>
-
-        <textarea
-          placeholder="What's the item for today?"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-
-    <button onClick={submitExpense}>Add Expense</button>
-
-    <div/>
-
-     {/* Right chart */}
-      <div className="chart">
-        <h3>Finance goals chart</h3>
-        <div className="chart-placeholder"></div>
+        <div className="field">
+          <label>Date</label>
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </div>
       </div>
 
-    </div>
+      {/* MAIN GRID */}
+      <div className="main-row">
+        {/* LEFT */}
+        <aside className="history">
+          <h3>Finance History</h3>
+          {expenses.map((e) => (
+            <div key={e.id} className="history-item">
+              <div>{e.hobby}</div>
+              <div>${e.amount}</div>
+              <small>{e.expense_date}</small>
+            </div>
+          ))}
+        </aside>
 
-    <footer className="footer">Footer</footer>
+        {/* CENTER */}
+        <main className="center">
+          <div className="image-drop">
+            Drop Product Image or Receipt here
+          </div>
 
+          <textarea
+            placeholder="What's the item for today?"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+
+          <button onClick={submitExpense}>Add Expense</button>
+        </main>
+
+        {/* RIGHT */}
+        <aside className="chart">
+          <h3>Finance goals chart</h3>
+          <div className="chart-placeholder"></div>
+        </aside>
+      </div>
+
+      {/* FOOTER */}
+      <footer className="footer">Footer</footer>
     </div>
-  </div>
-    )
+  );
 }

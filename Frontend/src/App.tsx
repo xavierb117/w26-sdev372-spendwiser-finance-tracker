@@ -16,7 +16,6 @@ function App() {
   }, []);
   return (
     <>
-      <h1>SpendWiser</h1>
       <DashboardForm />
     </>
   )
