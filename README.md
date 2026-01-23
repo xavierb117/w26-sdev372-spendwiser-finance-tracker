@@ -30,11 +30,7 @@
 ## User Flows
 - Users can accomplish key tasks by keeping track and monitoring their spending.
 ## Wireframe
-<<<<<<< HEAD
-![WireFrame-Picture-1](WireFrame1.png)
-### When the user clicks on one of the lists
-![WireFrame-Picture-2](WireFrame2.png)
-=======
-![alt text](image.png)
-### When the user clicks on one of the lists
-![alt 
+![WireFrame-Picture](WireFrame.png)
+
+
+
