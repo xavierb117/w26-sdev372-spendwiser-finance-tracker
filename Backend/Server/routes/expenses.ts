@@ -16,12 +16,16 @@ router.get("/", async (_req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { hobby, description, location, amount, expense_date, image_path } = req.body;
+  const { hobby, description, location, amount, expense_date, image } = req.body;
 
   if (!hobby || !amount || !expense_date) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
+  if (image){
+    //write image to uploads folder
+    //get image path 
+  }
   try {
     await pool.query(
       `INSERT INTO expenses (hobby, description, location, amount, expense_date, image_path)
