@@ -67,6 +67,8 @@ export default function DashboardForm(){
       }, []),
   })
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/';
+
 return (
     <div className="dashboard-wrapper">
       {/* TOP ROW */}
@@ -120,6 +122,8 @@ return (
               <div>{e.hobby}</div>
               <div>${e.amount}</div>
               <small>{e.expense_date}</small>
+              <div>{e.description}</div>
+              {e.image_path && <img src={`${API_BASE_URL}${e.image_path}`}></img>}
             </div>
           ))}
         </aside>
